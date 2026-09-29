@@ -25,4 +25,4 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path('api/', include('website.urls')),
     path('api/', include("arts.urls")),
-]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+]
