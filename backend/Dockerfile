@@ -10,7 +10,10 @@ ENV PIP_NO_INPUT=1
 COPY requirements.txt .
 
 # Install Python packages
-RUN python -m pip install --no-cache-dir -r requirements.txt
+RUN apt-get update \
+    && apt-get upgrade -y \
+    && python -m pip install --no-cache-dir -r requirements.txt \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY . .
 
