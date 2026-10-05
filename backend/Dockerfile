@@ -26,6 +26,9 @@ RUN addgroup --system appuser \
 # Switch to non-root user
 USER appuser
 
+# Collect static files
+RUN python3 manage.py collectstatic --noinput
+
 # Expose port
 EXPOSE 8000
 

@@ -26,6 +26,9 @@ RUN addgroup -S appuser \
 # Switch to non-root user
 USER appuser
 
+ENV HOSTNAME=0.0.0.0
+ENV PORT=3000
+
 EXPOSE 3000
 
 CMD ["node", "server.js"]
