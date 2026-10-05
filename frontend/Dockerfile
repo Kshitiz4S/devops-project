@@ -26,6 +26,7 @@ RUN addgroup -S appuser \
 # Switch to non-root user
 USER appuser
 
+# Environment
 ENV HOSTNAME=0.0.0.0
 ENV PORT=3000
 

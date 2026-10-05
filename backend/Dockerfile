@@ -15,6 +15,7 @@ RUN apt-get update \
     && python -m pip install --no-cache-dir -r requirements.txt \
     && rm -rf /var/lib/apt/lists/*
 
+# Copy
 COPY . .
 
 # Create non-root user with a real home directory
