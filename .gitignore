@@ -1,0 +1,6 @@
+# Kubernetes secrets
+k8s/secrets/*.yaml
+
+# Local Kubernetes files
+*.secret.yaml
+
