@@ -1,0 +1,6 @@
+# Kubernetes secrets
+kubernetes/secrets/*.yml
+
+# Local Kubernetes files
+*.secret.yml
+
