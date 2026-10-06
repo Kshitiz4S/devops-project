@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: kshitiz182/art-gallery-frontend:67808
+          image: kshitiz182/art-gallery-frontend:d55c4
           imagePullPolicy: IfNotPresent
 
           ports:
