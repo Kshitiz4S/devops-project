@@ -7,6 +7,9 @@ on:
       - "backend/**"
       - ".github/workflows/backend-ci.yml"
 
+permissions:
+  contents: write
+
 env:
   IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/art-gallery-backend
 
@@ -39,7 +42,7 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: read
+      contents: write
 
     steps:
       - name: Checkout repository
@@ -85,4 +88,18 @@ jobs:
       - name: Push image to Docker Hub
         run: |
           docker push ${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.SHORT_SHA }}
+
+      - name: Update Kubernetes Manifests File
+        run: |
+          cat kubernetes/backend/deployment.yml
+          sed -i "s|image: kshitiz182/art-gallery-backend:.*|image: kshitiz182/art-gallery-backend:${{ steps.vars.outputs.SHORT_SHA }}|g" kubernetes/backend/deployment.yml
+          cat kubernetes/backend/deployment.yml
+
+      - name: Commit the changes
+        run: |
+          git config --global user.email "<>"
+          git config --global user.name "GitHub Actions Bot"
+          git add kubernetes/backend/deployment.yml
+          git commit -m "Update deployment.yml with new image version - ${{ steps.vars.outputs.SHORT_SHA }}"
+          git push origin staging
 
