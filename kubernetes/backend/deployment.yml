@@ -21,7 +21,7 @@ spec:
 
       containers:
         - name: backend
-          image: kshitiz182/art-gallery-backend:7baba
+          image: kshitiz182/art-gallery-backend:93f66
           imagePullPolicy: IfNotPresent
 
           ports:
