@@ -15,7 +15,7 @@ spec:
 
       containers:
         - name: migrate
-          image: kshitiz182/art-gallery-backend:7baba
+          image: kshitiz182/art-gallery-backend:25e1d
 
           envFrom:
             - secretRef:
