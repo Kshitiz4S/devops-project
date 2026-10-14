@@ -91,15 +91,16 @@ jobs:
 
       - name: Update Kubernetes Manifests File
         run: |
-          cat kubernetes/backend/deployment.yml
-          sed -i "s|image: kshitiz182/art-gallery-backend:.*|image: kshitiz182/art-gallery-backend:${{ steps.vars.outputs.SHORT_SHA }}|g" kubernetes/backend/deployment.yml
-          cat kubernetes/backend/deployment.yml
+          cat kubernetes/backend/deployment.yml kubernetes/backend/migrate.yml
+          sed -i "s|image: kshitiz182/art-gallery-backend:.*|image: kshitiz182/art-gallery-backend:${{ steps.vars.outputs.SHORT_SHA }}|g" kubernetes/backend/deployment.yml 
+          sed -i "s|image: kshitiz182/art-gallery-backend:.*|image: kshitiz182/art-gallery-backend:${{ steps.vars.outputs.SHORT_SHA }}|g" kubernetes/backend/migrate.yml          
+          cat kubernetes/backend/deployment.yml kubernetes/backend/migrate.yml
 
       - name: Commit the changes
         run: |
           git config --global user.email "<>"
           git config --global user.name "GitHub Actions Bot"
-          git add kubernetes/backend/deployment.yml
+          git add kubernetes/backend/deployment.yml kubernetes/backend/migrate.yml
           git commit -m "Update deployment.yml with new image version - ${{ steps.vars.outputs.SHORT_SHA }}"
           git push origin staging
 

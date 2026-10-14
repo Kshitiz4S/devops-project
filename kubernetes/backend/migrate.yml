@@ -4,8 +4,7 @@ metadata:
   name: backend-migrate
   namespace: artgallery
   annotations:
-    argocd.argoproj.io/hook: PreSync
-    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+    argocd.argoproj.io/sync-wave: "1"
 
 spec:
   backoffLimit: 3
@@ -23,7 +22,7 @@ spec:
                 name: backend-secret
 
           command:
-            - python
+            - python3
             - manage.py
             - migrate
             - --noinput
